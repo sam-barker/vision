@@ -2,23 +2,17 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node
+
 version: 2
 jobs:
-  build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/repo
-
+  install:
+    <<: *defaults
     steps:
       - checkout
-      # Download and cache dependencies
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
@@ -31,14 +25,49 @@ jobs:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - node_modules
+
+  lint:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo/node_modules
       - run:
           name: Linting
           command: yarn lint
-      - run:
-          name: Building
-          command: yarn bundle:prod
+
+  test:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo/node_modules
       - run:
           name: Testing
           command: yarn test:coverage
 
+  build:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo/node_modules
+      - run:
+          name: Building
+          command: yarn bundle:prod
 
+workflows:
+  version: 2
+  install-lint-lint-build:
+    jobs:
+      - install
+      - lint:
+          requires:
+            - install
+      - test:
+          requires:
+            - lint
+      - build:
+          requires:
+            - test
