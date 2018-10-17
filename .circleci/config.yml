@@ -3,7 +3,7 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 defaults: &defaults
-  working_directory: ~/repo
+  working_directory: /code/repo
   docker:
     - image: circleci/node
 
@@ -26,15 +26,16 @@ jobs:
           paths:
             - ~/.cache/yarn
       - persist_to_workspace:
-          root: ~/repo
+          root: /code/repo
           paths:
             - node_modules
 
   lint:
     <<: *defaults
     steps:
+      - checkout
       - attach_workspace:
-          at: ~/repo/node_modules
+          at: /code/repo
       - run:
           name: Linting
           command: yarn lint
@@ -42,8 +43,9 @@ jobs:
   test:
     <<: *defaults
     steps:
+      - checkout
       - attach_workspace:
-          at: ~/repo/node_modules
+          at: /code/repo
       - run:
           name: Testing
           command: yarn test:coverage
@@ -51,6 +53,7 @@ jobs:
   build:
     <<: *defaults
     steps:
+      - checkout
       - attach_workspace:
           at: ~/repo/node_modules
       - run:
