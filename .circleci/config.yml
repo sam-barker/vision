@@ -48,7 +48,7 @@ jobs:
           at: ~/code/repo
       - run:
           name: Testing
-          command: yarn test:coverage
+          command: yarn test:coverage:ci
 
   build:
     <<: *defaults
