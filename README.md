@@ -1,2 +1,2 @@
-# vision
-Pomodoro style timer using Electron &amp; React
+# Vision
+Pomodoro style timer using Electron &amp; React!
