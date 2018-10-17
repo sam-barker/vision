@@ -1,0 +1,80 @@
+{
+  "name": "vision",
+  "version": "1.0.0",
+  "description": "Pomodoro timer with electron and react",
+  "repository": "https://github.com/spbarker/vision.git",
+  "author": "Samuel Barker <spbarker1994@gmail.com>",
+  "main": "electronApp.js",
+  "license": "MIT",
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
+    "electron": "^3.0.4",
+    "electron-builder": "^20.28.4",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
+    "husky": "^1.1.2",
+    "jest": "^23.6.0",
+    "standard": "^12.0.1",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  },
+  "scripts": {
+    "lint": "standard",
+    "bundle:dev": "webpack --mode development",
+    "bundle:prod": "webpack --mode production",
+    "serve": "electron .",
+    "start": "yarn bundle:dev && yarn serve",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env"
+      ],
+      [
+        "@babel/preset-react"
+      ]
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint && yarn test:coverage",
+      "pre-push": "yarn lint && yarn test:coverage"
+    }
+  },
+  "jest": {
+    "verbose": true,
+    "transform": {
+      "^.+\\.js?$": "babel-jest"
+    },
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!__tests__/testSetup.js",
+      "!src/index.js"
+    ],
+    "testPathIgnorePatterns": [
+      "node_modules",
+      "__tests__/testSetup.js"
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>/__tests__/testSetup.js",
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
+  }
+}
