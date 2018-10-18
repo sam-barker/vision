@@ -111,5 +111,8 @@
     "commitizen": {
       "path": "./node_modules/@metahub/cz-conventional-commit"
     }
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
