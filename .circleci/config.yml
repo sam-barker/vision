@@ -75,38 +75,6 @@ jobs:
           name: Publish NPM package
           command: yarn semantic-release || true
 
-  dist:
-    <<: *defaults
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/code/repo
-      - run:
-          name: Building distribution
-          command: yarn dist
-      - persist_to_workspace:
-          root: ~/code/repo
-          paths:
-            - node_modules
-            - build
-            - dist
-
-  publish-github-release:
-    working_directory: ~/code/repo
-    docker:
-      - image: circleci/golang:1.8
-    steps:
-      - attach_workspace:
-          at: ~/code/repo
-      - run:
-          name: "Publish Release on GitHub"
-          command: |
-            go get github.com/tcnksm/ghr
-            SHA=$(git rev-list --tags --max-count=1)
-            VERSION=$(git describe --tags $SHA)
-            DMG_TAG="${VERSION:1}"
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ~/code/repo/dist/Vision-$DMG_TAG.dmg
-
 workflows:
   version: 2
   install-lint-test-build-release:
@@ -127,16 +95,4 @@ workflows:
               only: master
           requires:
             - build
-      - dist:
-          filters:
-            branches:
-              only: master
-          requires:
-            - publish
-      - publish-github-release:
-          filters:
-            branches:
-              only: master
-          requires:
-            - dist
 
