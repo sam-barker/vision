@@ -1,12 +1,13 @@
 {
   "name": "vision",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Pomodoro timer with electron and react",
   "repository": "https://github.com/spbarker/vision.git",
   "author": "Samuel Barker <spbarker1994@gmail.com>",
   "main": "build/electron/index.js",
   "license": "MIT",
   "dependencies": {
+    "@commitlint/config-angular": "4",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
@@ -16,10 +17,13 @@
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "@commitlint/cli": "^7.2.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
+    "commitizen": "^3.0.2",
     "coveralls": "^3.0.2",
+    "cz-conventional-changelog": "^2.1.0",
     "electron": "^3.0.4",
     "electron-builder": "^20.28.4",
     "enzyme": "^3.7.0",
@@ -33,14 +37,14 @@
     "webpack-cli": "^3.1.2"
   },
   "scripts": {
-    "build:electron": "babel src/electron --out-dir build/electron",
-    "bundle:dev": "webpack --mode development && yarn build:electron",
-    "bundle:prod": "webpack --mode production && yarn build:electron",
+    "cm": "git-cz",
     "dist": "electron-builder",
+    "electron:start": "electron .",
+    "js:build:electron": "babel src/electron --out-dir build/electron",
+    "js:build:prod": "webpack --mode production && yarn js:build:electron",
+    "js:lint": "standard",
     "pack": "electron-builder --dir",
-    "lint": "standard",
-    "serve": "electron .",
-    "start": "yarn bundle:dev && yarn serve",
+    "start": "yarn js:build:prod && yarn electron:start",
     "test:coverage": "jest --coverage",
     "test:coverage:ci": "yarn test:coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
@@ -56,8 +60,9 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint && yarn test:coverage",
-      "pre-push": "yarn lint && yarn test:coverage"
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "yarn js:lint && yarn test:coverage",
+      "pre-push": "yarn js:lint && yarn test:coverage"
     }
   },
   "jest": {
@@ -97,5 +102,10 @@
       "index.html",
       "package.json"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
