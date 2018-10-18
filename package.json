@@ -1,5 +1,5 @@
 {
-  "name": "vision",
+  "name": "@spbarker/vision",
   "version": "0.0.0-development",
   "description": "Pomodoro timer with electron and react",
   "repository": "https://github.com/spbarker/vision.git",
