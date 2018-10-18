@@ -6,7 +6,7 @@
 
 import React from 'react'
 import { mount } from 'enzyme'
-import App from '../../src/react/app'
+import App from '../../../src/react/app'
 
 describe('<App> Component', () => {
   it('Should be defined', () => {

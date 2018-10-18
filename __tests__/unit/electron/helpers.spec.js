@@ -9,7 +9,7 @@ import {
   getWindowPosition,
   showWindow,
   toggleWindow
-} from '../../src/electron/helpers'
+} from '../../../src/electron/helpers'
 
 /**
  * Creates an empty mock function using jest

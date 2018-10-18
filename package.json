@@ -27,18 +27,20 @@
     "file-loader": "^2.0.0",
     "husky": "^1.1.2",
     "jest": "^23.6.0",
+    "spectron": "^4.0.0",
     "standard": "^12.0.1",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"
   },
   "scripts": {
-    "lint": "standard",
     "build:electron": "babel src/electron --out-dir build/electron",
     "bundle:dev": "webpack --mode development && yarn build:electron",
     "bundle:prod": "webpack --mode production && yarn build:electron",
+    "dist": "electron-builder",
+    "pack": "electron-builder --dir",
+    "lint": "standard",
     "serve": "electron .",
     "start": "yarn bundle:dev && yarn serve",
-    "test": "jest",
     "test:coverage": "jest --coverage",
     "test:coverage:ci": "yarn test:coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
@@ -65,15 +67,15 @@
     },
     "collectCoverageFrom": [
       "src/**/*.js",
-      "!__tests__/testSetup.js",
+      "!__tests__/unit/testSetup.js",
       "!src/react/index.js",
       "!src/electron/index.js"
     ],
     "testPathIgnorePatterns": [
       "node_modules",
-      "__tests__/testSetup.js"
+      "__tests__/unit/testSetup.js"
     ],
-    "setupTestFrameworkScriptFile": "<rootDir>/__tests__/testSetup.js",
+    "setupTestFrameworkScriptFile": "<rootDir>/__tests__/unit/testSetup.js",
     "coverageThreshold": {
       "global": {
         "branches": 100,
@@ -82,5 +84,18 @@
         "statements": 100
       }
     }
+  },
+  "build": {
+    "appId": "com.spbarker.vision",
+    "mac": {
+      "category": "public.app-category.healthcare-fitness"
+    },
+    "files": [
+      "assets/**/*",
+      "build/**/*",
+      "node_modules/**/*",
+      "index.html",
+      "package.json"
+    ]
   }
 }
