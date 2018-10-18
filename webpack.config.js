@@ -1,13 +1,13 @@
 const path = require('path')
 
-module.exports = {
+const reactConfig = {
   watch: false,
   target: 'electron-renderer',
-  entry: './src/index.js',
+  entry: './src/react/index.js',
   output: {
-    path: path.join(__dirname, '/build'),
-    publicPath: 'build/',
-    filename: 'bundle.js'
+    path: path.join(__dirname, '/build/react'),
+    publicPath: 'build/react',
+    filename: 'index.js'
   },
   module: {
     rules: [
@@ -25,3 +25,7 @@ module.exports = {
     extensions: ['.js']
   }
 }
+
+module.exports = [
+  reactConfig
+]
