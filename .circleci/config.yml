@@ -38,7 +38,7 @@ jobs:
           at: ~/code/repo
       - run:
           name: Linting
-          command: yarn lint
+          command: yarn js:lint
 
   test:
     <<: *defaults
@@ -58,7 +58,7 @@ jobs:
           at: ~/code/repo
       - run:
           name: Building
-          command: yarn bundle:prod
+          command: yarn js:build:prod
 
 workflows:
   version: 2
