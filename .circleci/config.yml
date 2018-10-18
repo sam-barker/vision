@@ -72,8 +72,8 @@ jobs:
       - attach_workspace:
           at: ~/code/repo
       - run:
-        name: Release NPM package
-        command: npm run semantic-release || true
+          name: Release NPM package
+          command: yarn semantic-release || true
 
 workflows:
   version: 2
