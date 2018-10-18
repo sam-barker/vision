@@ -811,6 +811,16 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
+"@metahub/cz-conventional-commit@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@metahub/cz-conventional-commit/-/cz-conventional-commit-3.0.2.tgz#2253d067e58769394265f102ba0a22ede50cee56"
+  integrity sha512-pdiXtbTNvhwr17QGuKsO+LqtYVYrG2qcxokvWp12HuW8SwTu+CWBCIhi+GHdu2JPWt3AqGO0Pplu/Q48Sj0XJQ==
+  dependencies:
+    commitizen "^3.0.0"
+    conventional-changelog-metahub "^2.0.1"
+    lodash "^4.17.4"
+    word-wrap "^1.2.3"
+
 "@types/node@*":
   version "10.12.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.0.tgz#ea6dcbddbc5b584c83f06c60e82736d8fbb0c235"
@@ -2300,7 +2310,7 @@ commander@~2.17.1:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
   integrity sha512-wPMUt6FnH2yzG95SA6mzjQOEKUU3aLaDEmzs1ti+1E9h+CsrZghRlqEM/EJ4KscsQVG8uNN4uVreUeT8+drlgg==
 
-commitizen@^3.0.2:
+commitizen@^3.0.0, commitizen@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/commitizen/-/commitizen-3.0.2.tgz#8af8d943c9b97a6a9523d824c654660a43138179"
   integrity sha512-E+Wixgc7s4koMDl98wnwoSerHt0pvWBdPygP7+q2TfC/DHDbGvCYFbhtS+c+bhYNpR4D9lW9rRY6mFmT63Blgg==
@@ -2416,6 +2426,22 @@ conventional-changelog-angular@^1.3.3:
   dependencies:
     compare-func "^1.3.1"
     q "^1.5.1"
+
+conventional-changelog-angular@^5.0.0:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-angular/-/conventional-changelog-angular-5.0.1.tgz#f96431b76de453333a909decd02b15cb5bd2d364"
+  integrity sha512-q4ylJ68fWZDdrFC9z4zKcf97HW6hp7Mo2YlqD4owfXhecFKy/PJCU/1oVFF4TqochchChqmZ0Vb0e0g8/MKNlA==
+  dependencies:
+    compare-func "^1.3.1"
+    q "^1.5.1"
+
+conventional-changelog-metahub@^2.0.1:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-metahub/-/conventional-changelog-metahub-2.0.2.tgz#9fd6869005d3c5cb0d58c80e35b094c2adcb5369"
+  integrity sha512-3lyW6bEXUSYtXD4ykcO1hG4o4VNYoM6ZHtlNvNlPyWX3LpIk9IKPjXZqKY34lS7Rqmq3AXG5fyqJa+wRpEq/4Q==
+  dependencies:
+    conventional-changelog-angular "^5.0.0"
+    lodash "^4.17.4"
 
 conventional-commit-types@^2.0.0:
   version "2.2.0"
@@ -9625,7 +9651,7 @@ widest-line@^2.0.0:
   dependencies:
     string-width "^2.1.1"
 
-word-wrap@^1.0.3:
+word-wrap@^1.0.3, word-wrap@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"
   integrity sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==
