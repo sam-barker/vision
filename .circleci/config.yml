@@ -65,6 +65,16 @@ jobs:
             - node_modules
             - build
 
+  publish:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/code/repo
+      - run:
+          name: Publish NPM package
+          command: yarn semantic-release || true
+
 workflows:
   version: 2
   install-lint-test-build-release:
@@ -79,4 +89,10 @@ workflows:
       - build:
           requires:
             - test
+      - publish:
+          filters:
+            branches:
+              only: master
+          requires:
+            - build
 

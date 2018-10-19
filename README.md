@@ -34,6 +34,6 @@ The test coverage is enforced at 100% across the board - no exceptions. All of t
 The CI tool of choice is [CircleCI](https://circleci.com/) and runs on every pull request, not every commit however. The CI will run `yarn install`, `linting`, `unit tests`, and then finally a `JS build` to ensure that everything is in working order.
 
 ## Releasing
-Once necessary functionality has been merged. You can release by running `yarn release`. The versioning is handled itself by a tool called [semantic-release](https://www.npmjs.com/package/semantic-release).
+Releasing is handled automatically by CI. The versioning is handled itself by a tool called [semantic-release](https://www.npmjs.com/package/semantic-release).
 
-Once this has completed a new git tag and branch will be created. Submit a pull request for the new release branch to merge into master.
+Once this has completed a new git tag will be created. However the version in `package.json` will not have been updated. This job will need to be done separately.
