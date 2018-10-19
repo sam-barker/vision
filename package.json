@@ -1,6 +1,6 @@
 {
   "name": "@spbarker/vision",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pomodoro timer with electron and react",
   "repository": "https://github.com/spbarker/vision.git",
   "author": "Samuel Barker <spbarker1994@gmail.com>",
@@ -45,10 +45,13 @@
     "js:build:prod": "webpack --mode production && yarn js:build:electron",
     "js:lint": "standard",
     "pack": "electron-builder --dir",
+    "release:checkout:master": "git checkout . && git reset --hard && git checkout master && git pull",
+    "release:create:branch": "git checkout -b release.$(git describe --tags $(git rev-list --tags --max-count=1))",
+    "release:push:branch": "git add . && yarn cm && git push --set-upstream origin release.$(git describe --tags $(git rev-list --tags --max-count=1))",
+    "release": "yarn release:checkout:master && semantic-release && yarn release:create:branch",
     "start": "yarn js:build:prod && yarn electron:start",
     "test:coverage": "jest --coverage",
-    "test:coverage:ci": "yarn test:coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "semantic-release": "semantic-release"
+    "test:coverage:ci": "yarn test:coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "babel": {
     "presets": [
