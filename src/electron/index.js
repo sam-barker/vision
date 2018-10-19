@@ -61,4 +61,5 @@ app.on('ready', () => {
     toggleWindow(window, tray)
   }, path.resolve(__dirname, '../../assets/eye.png'))
   window = createWindow()
+  // window.webContents.openDevTools()
 })

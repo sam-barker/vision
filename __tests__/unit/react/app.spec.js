@@ -17,4 +17,14 @@ describe('<App> Component', () => {
     const app = mount(<App />)
     expect(app).toBeDefined()
   })
+
+  it('Should render the disabled view when disabled', () => {
+    const app = mount(<App />)
+    expect(app).toBeDefined()
+    const switchToClick = app.find('Switch').at(0)
+    switchToClick.props().onChange()
+    app.update()
+    expect(app.state('enabled')).toEqual(false)
+    expect(app.text()).toContain('Vision is disabled!')
+  })
 })
