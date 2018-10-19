@@ -35,3 +35,5 @@ The CI tool of choice is [CircleCI](https://circleci.com/) and runs on every pul
 
 ## Releasing
 Once necessary functionality has been merged. You can release by running `yarn release`. The versioning is handled itself by a tool called [semantic-release](https://www.npmjs.com/package/semantic-release).
+
+Once this has completed a new git tag and branch will be created. Submit a pull request for the new release branch to merge into master.
