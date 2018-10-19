@@ -10,6 +10,11 @@ import FormGroup from '@material-ui/core/FormGroup'
 import Grid from '@material-ui/core/Grid'
 import styles from './styles'
 
+/**
+ * Renders the bar title
+ * @param {string} text The title text
+ * @returns {Typography} The title to render
+ */
 function renderTitle (text) {
   return (
     <Typography variant='h6' color='inherit'>
@@ -18,6 +23,12 @@ function renderTitle (text) {
   )
 }
 
+/**
+ * Renders the bar's switch
+ * @param {boolean} enabled Whether or not the app is enabled
+ * @param {function} onChange The function to execute on switch change
+ * @returns {JSX.Element.Switch} The switch to render
+ */
 function renderSwitch (enabled, onChange) {
   return (
     <Switch
@@ -28,19 +39,32 @@ function renderSwitch (enabled, onChange) {
   )
 }
 
+/**
+ * Renders the form group that the switch is contained within
+ * @param {boolean} enabled Whether or not the app is enabled
+ * @param {function} onChange The function to execute on switch click
+ * @returns {JSX.Element.FormGroup} The form group to render
+ */
 function renderSwitchFormGroup (enabled, onChange) {
   return (
-    <Grid item>
-      <FormGroup>
-        <FormControlLabel
-          control={renderSwitch(enabled, onChange)}
-          label={enabled ? 'Enabled' : 'Disabled'}
-        />
-      </FormGroup>
-    </Grid>
+    <FormGroup>
+      <FormControlLabel
+        control={renderSwitch(enabled, onChange)}
+        label={enabled ? 'Enabled' : 'Disabled'}
+      />
+    </FormGroup>
   )
 }
 
+/**
+ * Bar component
+ * @param {object} obj The component props
+ * @param {object} obj.classes The classes created from styles object
+ * @param {string} obj.title The title to show in the bar
+ * @param {boolean} obj.enabled Whether or not the app is enabled
+ * @param {function} obj.toggleEnabled The function to toggle the app on and off
+ * @returns {JSX.Element.Bar} The rendered Bar
+ */
 function Bar ({
   classes,
   title,
