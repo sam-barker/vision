@@ -2,6 +2,9 @@ import React from 'react'
 import { Bar, View } from './components'
 import Typography from '@material-ui/core/Typography'
 
+/**
+ * Main app component
+ */
 export default class App extends React.Component {
   constructor (props) {
     super(props)
@@ -12,34 +15,48 @@ export default class App extends React.Component {
     this.bindHandlers()
   }
 
+  /**
+   * Binds all handlers to `this`
+   */
   bindHandlers () {
     this.toggleEnabled = this.toggleEnabled.bind(this)
   }
 
+  /**
+   * Inverses the state value `enabled`
+   */
   toggleEnabled () {
     this.setState({ enabled: !this.state.enabled })
   }
 
-  renderOnView () {
+  /**
+   * Renders the enabled view
+   * @returns {JSX.Element.Typography} The title component in the view
+   */
+  renderEnabledView () {
     return (
-      <div>
-        <Typography variant='h3' component='h3'>
-          Vision is on!
-        </Typography>
-      </div>
+      <Typography variant='h3' component='h3'>
+        Vision is on!
+      </Typography>
     )
   }
 
-  renderOffView () {
+  /**
+   * Renders the disabled view
+   * @returns {JSX.Element.Typography} The title component in the view
+   */
+  renderDisabledView () {
     return (
-      <div>
-        <Typography variant='h3' component='h3'>
-          Vision is disabled!
-        </Typography>
-      </div>
+      <Typography variant='h3' component='h3'>
+        Vision is disabled!
+      </Typography>
     )
   }
 
+  /**
+   * Renders the component
+   * @returns {JSX.Element.App} The rendered app
+   */
   render () {
     const { enabled } = this.state
     return (
@@ -50,7 +67,7 @@ export default class App extends React.Component {
           toggleEnabled={this.toggleEnabled}
         />
         <View>
-          {enabled ? this.renderOnView() : this.renderOffView() }
+          {enabled ? this.renderEnabledView() : this.renderDisabledView() }
         </View>
       </div>
     )
